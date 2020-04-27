@@ -1,0 +1,40 @@
+## Module 15 Challenge
+## Set Working Directory (Debug Only)
+setwd("~/Dropbox (FANS)/0 Bootcamp/LocalRepo/Module_15/Module15_MechaCar")
+
+## Install tidyverse Library
+library(tidyverse)
+
+## MPG
+mecha <- read.csv('MechaCar_mpg.csv', stringsAsFactors = F)
+head(mecha)
+
+# Run correlation with mpg as dependent variable and others as independent variable
+m_cor = data.matrix(mecha[,c('vehicle.length','vehicle.weight','spoiler.angle','ground.clearance','AWD','mpg')])
+m_cor
+cor(m_cor)
+
+# Multile Linear Regression with MPG
+lr_mecha_mpg <- lm(mpg~vehicle.length+vehicle.weight+spoiler.angle+ground.clearance+AWD, mecha)
+summary(lr_mecha_mpg)
+
+# Run multiple linear regression analysis with mpg as dependent variable and ground clearance and vehicle length as independent variable
+lreg_mpg_length_clearance <- lm(mpg~vehicle.length+ground.clearance, mecha)
+summary(lreg_mpg_length_clearance)
+
+
+## Suspension Coil
+
+coil <- read.csv('Suspension_Coil.csv', stringsAsFactors = F)
+head(coil)
+
+summary(coil$PSI)
+
+summarize_coil <- coil %>% group_by(Manufacturing_Lot) %>% summarize(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), SD=sd(PSI),)
+summarize_coil
+
+
+# Suspension Coil T-Test
+
+
+t.test(coil$PSI, mu = 1500)
