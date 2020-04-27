@@ -1,6 +1,6 @@
 ## Module 15 Challenge
 ## Set Working Directory (Debug Only)
-setwd("~/Dropbox (FANS)/0 Bootcamp/LocalRepo/Module_15/Module15_MechaCar")
+## setwd("~/Dropbox (FANS)/0 Bootcamp/LocalRepo/Module_15/Module15_MechaCar")
 
 ## Install tidyverse Library
 library(tidyverse)
@@ -28,7 +28,11 @@ summary(lreg_mpg_length_clearance)
 coil <- read.csv('Suspension_Coil.csv', stringsAsFactors = F)
 head(coil)
 
+#Summary Data, Standard DEviation, Variance of entire dataset
 summary(coil$PSI)
+sd(coil$PSI)
+var(coil$PSI)
+
 
 summarize_coil <- coil %>% group_by(Manufacturing_Lot) %>% summarize(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), SD=sd(PSI),)
 summarize_coil
@@ -38,3 +42,4 @@ summarize_coil
 
 
 t.test(coil$PSI, mu = 1500)
+
